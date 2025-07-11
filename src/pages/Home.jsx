@@ -4,6 +4,7 @@ import FeaturedSection from '../components/FeaturedSection'
 import Banner from '../components/Banner'
 import Testimonals from '../components/Testimonals'
 import NewLetter from '../components/NewLetter'
+import Footer from '../components/Footer'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Banner />
       <Testimonals />
       <NewLetter />
+      <Footer />
     </>
   )
 }
