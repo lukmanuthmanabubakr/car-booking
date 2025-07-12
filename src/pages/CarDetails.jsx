@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { assets, dummyCarData } from "../assets/assets";
+import Loader from "../components/Loader";
 
 const CarDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [car, setCar] = useState(null);
+  const currency = import.meta.env.VITE_CURRENCY
 
   useEffect(() => {
     setCar(dummyCarData.find((car) => car._id === id));
@@ -53,7 +55,7 @@ const CarDetails = () => {
                   className="flex flex-col item-center bg-light p-4 rounded-lg"
                 >
                   <img src={icon} alt="" className="h-5 mb-2" />
-                  {text}
+                  <p className="flex justify-center">{text}</p>
                 </div>
               ))}
             </div>
@@ -83,11 +85,13 @@ const CarDetails = () => {
           </div>
         </div>
         {/* Right: Booking Form */}
-        <form action=""></form>
+        <form className="shadow-lg h-max sticky top-18 rounded-xl p-6 space-y-6 text-gray-500">
+                <p>{currency}</p>
+        </form>
       </div>
     </div>
   ) : (
-    <p>Loading...</p>
+    <Loader />
   );
 };
 
