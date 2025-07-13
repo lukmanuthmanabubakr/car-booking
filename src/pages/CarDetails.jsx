@@ -86,7 +86,7 @@ const CarDetails = () => {
         </div>
         {/* Right: Booking Form */}
         <form className="shadow-lg h-max sticky top-18 rounded-xl p-6 space-y-6 text-gray-500">
-                <p>{currency}</p>
+                <p className="flex items-center justify-between text-2xl text-gray-800">{currency}{car.pricePerDay} <span className="text-base text-gray-400 font-normal">per day</span></p>
         </form>
       </div>
     </div>
