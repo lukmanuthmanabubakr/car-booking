@@ -1,17 +1,18 @@
-import React from 'react'
-import { dummyUserDatayUserData } from '../../assets/assets'
-import { useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { dummyUserDatayUserData } from "../../assets/assets";
+import { useLocation } from "react-router-dom";
 
 const Sidebar = () => {
-
   const user = dummyUserData;
   const location = useLocation();
+  const [image, setImage] = useState("");
 
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  const updateImage = async () => {
+    user.image = URL.createObjectURL(image);
+    setImage("");
+  };
 
-export default Sidebar
+  return <div></div>;
+};
+
+export default Sidebar;
