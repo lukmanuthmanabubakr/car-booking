@@ -12,7 +12,13 @@ const Sidebar = () => {
     setImage("");
   };
 
-  return <div></div>;
+  return (
+    <div className="relative min-h-screen md:flex flex-col items-center pt-8 max-w-13 md:max-w-60 w-full border-r border-borderColor text-sm">
+      <div className="group relative">
+        <label htmlFor=""></label>
+      </div>
+    </div>
+  );
 };
 
 export default Sidebar;
