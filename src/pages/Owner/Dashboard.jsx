@@ -37,8 +37,13 @@ const Dashboard = () => {
   return (
     <div className="px-4 pt-10 md:px-10 flex-1">
       <Title title='Admin Dashboard' subTitle="Monitor overall platform perfomance including total cars, bookings, revenue, and recent activities"/>
+
+      <div>
+        
+      </div>
     </div>
   );
 };
 
 export default Dashboard;
+ 
