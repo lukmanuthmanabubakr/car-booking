@@ -38,8 +38,18 @@ const Dashboard = () => {
     <div className="px-4 pt-10 md:px-10 flex-1">
       <Title title='Admin Dashboard' subTitle="Monitor overall platform perfomance including total cars, bookings, revenue, and recent activities"/>
 
-      <div>
-        
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 my-8 max-w-3xl">
+        {dashboardCards.map((card, index) => (
+          <div key={index} className="flex gap-2 items-center justify-between p-4 rounded-md border border-borderColor">
+            <div>
+              <h1 className="text-xs text-gray-500">{card.title}</h1>
+              <p className="text-lg font-semibold">{card.value}</p>
+            </div>
+            <div>
+              <img src="" alt="" />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
