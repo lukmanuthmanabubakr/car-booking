@@ -67,7 +67,7 @@ const Dashboard = () => {
             <div key={index} className="mt-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div>
-                  <img src="" alt="" />
+                  <img src={} alt="" />
                 </div>
               </div>
             </div>
