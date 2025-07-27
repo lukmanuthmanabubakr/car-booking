@@ -66,9 +66,24 @@ const Dashboard = () => {
           {data.recentBookings.map((booking, index) => (
             <div key={index} className="mt-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div>
-                  <img src={} alt="" />
+                <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-primary/10">
+                  <img
+                    src={assets.listIconColored}
+                    alt=""
+                    className="h-5 w-5"
+                  />
                 </div>
+                <div>
+                  <p>
+                    {booking.car.brand} {booking.car.model}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    {booking.createdAt.split("T")[0]}
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 font-medium">
+                <p>{booking.price}</p>
               </div>
             </div>
           ))}
