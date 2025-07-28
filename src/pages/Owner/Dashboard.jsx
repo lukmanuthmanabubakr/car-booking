@@ -3,6 +3,9 @@ import { assets, dummyDashboardData } from "../../assets/assets";
 import Title from "../../components/owner/Title";
 
 const Dashboard = () => {
+
+  const currency = import.meta.env.VITE_CURRENCY
+  
   const [data, setData] = useState({
     totalCars: 0,
     totalBookings: 0,
@@ -83,13 +86,16 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2 font-medium">
-                <p>{booking.price}</p>
+                <p className="text-sm text-gray-500">{currency}{booking.price}</p>
+                <p className="px-3 py-0.5 border border-borderColor rounded-full text-sm">{booking.status}</p>
               </div>
             </div>
           ))}
         </div>
         {/* Monthly Revenue */}
-        <div></div>
+        <div>
+          <h1>Monthly Revenue</h1>
+        </div>
       </div>
     </div>
   );
