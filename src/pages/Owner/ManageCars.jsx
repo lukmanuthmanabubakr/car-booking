@@ -46,6 +46,9 @@ const ManageCars = () => {
                     </p>
                   </div>
                 </td>
+
+                <td className="p-3 max-md:hidden">{car.category}</td>
+                <td className="p-3">{car.pricePerDay}</td>
               </tr>
             ))}
           </tbody>
