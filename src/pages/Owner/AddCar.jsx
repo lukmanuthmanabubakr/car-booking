@@ -52,7 +52,7 @@ const AddCar = () => {
           <p className="text-sm text-gray-500"> Upload a picture of your car</p>
         </div>
 
-        {/* Car Brand & Model  */}
+        {/* Car Brand & Model */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="flex flex-col w-full">
