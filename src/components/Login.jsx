@@ -5,14 +5,23 @@ const Login = ({ setShowLogin }) => {
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  const onSubmitHandler = async (event) => {
+    e.preventDefault();
+  };
+
   return (
     <div
       onClick={() => setShowLogin(false)}
       className="fixed top-0 bottom-0 left-0 right-0 z-100 flex items-center text-sm text-gray-600 bg-black/50"
     >
-      <form className="flex flex-col gap-4 m-auto items-start p-8 py-12 w-80 sm:w-[352px] rounded-lg shadow-xl border border-gray-200 bg-white">
+      <form
+        onSubmit={onSubmitHandler}
+        onClick={(e) => e.stopPropagation()}
+        className="flex flex-col gap-4 m-auto items-start p-8 py-12 w-80 sm:w-[352px] rounded-lg shadow-xl border border-gray-200 bg-white"
+      >
         <p className="text-2xl font-medium m-auto">
-          <span className="text-indigo-500">User</span>{" "}
+          <span className="text-primary">User</span>{" "}
           {state === "login" ? "Login" : "Sign Up"}
         </p>
         {state === "register" && (
@@ -22,7 +31,7 @@ const Login = ({ setShowLogin }) => {
               onChange={(e) => setName(e.target.value)}
               value={name}
               placeholder="type here"
-              className="border border-gray-200 rounded w-full p-2 mt-1 outline-indigo-500"
+              className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary"
               type="text"
               required
             />
@@ -34,7 +43,7 @@ const Login = ({ setShowLogin }) => {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             placeholder="type here"
-            className="border border-gray-200 rounded w-full p-2 mt-1 outline-indigo-500"
+            className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary"
             type="email"
             required
           />
@@ -45,7 +54,7 @@ const Login = ({ setShowLogin }) => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             placeholder="type here"
-            className="border border-gray-200 rounded w-full p-2 mt-1 outline-indigo-500"
+            className="border border-gray-200 rounded w-full p-2 mt-1 outline-primary"
             type="password"
             required
           />
@@ -55,7 +64,7 @@ const Login = ({ setShowLogin }) => {
             Already have account?{" "}
             <span
               onClick={() => setState("login")}
-              className="text-indigo-500 cursor-pointer"
+              className="text-primary cursor-pointer"
             >
               click here
             </span>
@@ -65,13 +74,13 @@ const Login = ({ setShowLogin }) => {
             Create an account?{" "}
             <span
               onClick={() => setState("register")}
-              className="text-indigo-500 cursor-pointer"
+              className="text-primary cursor-pointer"
             >
               click here
             </span>
           </p>
         )}
-        <button className="bg-indigo-500 hover:bg-indigo-600 transition-all text-white w-full py-2 rounded-md cursor-pointer">
+        <button className="bg-primary hover:bg-indigo-600 transition-all text-white w-full py-2 rounded-md cursor-pointer">
           {state === "register" ? "Create Account" : "Login"}
         </button>
       </form>
