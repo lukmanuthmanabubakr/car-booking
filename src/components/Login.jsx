@@ -12,15 +12,22 @@ const Login = () => {
   const onSubmitHandler = async (event) => {
     try {
       event.preventDefault();
-      const {data} = await axios.post(`/api/user/${state}`, {name, email, password})
+      const { data } = await axios.post(`/api/user/${state}`, {
+        name,
+        email,
+        password,
+      });
 
-      if(data.success){
-        navigate('/')
-        setToken(data.token)
-        localStorage.setItem('')
+      if (data.success) {
+        navigate("/");
+        setToken(data.token);
+        localStorage.setItem("token", data.token);
+        setShowLogin(false);
+      } else {
+        toast.error(data.message);
       }
     } catch (error) {
-
+      toast.error(error.message);
     }
   };
 
