@@ -4,6 +4,7 @@ import { assets, dummyCarData } from "../assets/assets";
 import CarCard from "../components/CarCard";
 import { useSearchParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
 
 const Cars = () => {
   //Getting search params from url
@@ -21,9 +22,20 @@ const Cars = () => {
 
   const applyFilter = async () => {
     if (input === "") {
-      setFilteredCars(cars)
-      return null
+      setFilteredCars(cars);
+      return null;
     }
+
+    const filtered = cars.slice().filter((car) => {
+      return (
+        car.brand.toLowerCase().includes(input.toLowerCase()) ||
+        car.model.toLowerCase().includes(input.toLowerCase()) ||
+        car.category.toLowerCase().includes(input.toLowerCase()) ||
+        car.transmission.toLowerCase().includes(input.toLowerCase())
+      );
+    });
+
+    setFilteredCars(filtered);
   };
 
   const searchCarAvailability = async () => {
@@ -64,7 +76,7 @@ const Cars = () => {
             className="w-4.5 h-4.5 mr-2"
           />
           <input
-            onClick={(e) => setInput(e.target.value)}
+            onChange={(e) => setInput(e.target.value)}
             value={input}
             type="text"
             placeholder="Search by make,model, or features"
