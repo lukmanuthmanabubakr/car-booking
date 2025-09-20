@@ -3,6 +3,7 @@ import { dummyMyBookingsData } from "../../assets/assets";
 import Title from "../../components/owner/Title";
 
 const ManageBookings = () => {
+  const 
   const currency = import.meta.env.VITE_CURRENCY;
 
   const [bookings, setBookings] = useState([]);
