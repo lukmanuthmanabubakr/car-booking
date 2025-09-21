@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Title from "../components/Title";
-import { assets, dummyCarData } from "../assets/assets";
+import { assets } from "../assets/assets";
 import CarCard from "../components/CarCard";
 import { useSearchParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const Cars = () => {
   //Getting search params from url
@@ -63,13 +64,25 @@ const Cars = () => {
 
   return (
     <div>
-      <div className="flex flex-col items-center py-20 bg-light max-md:px-4">
+      {/* Header Section */}
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="flex flex-col items-center py-20 bg-light max-md:px-4"
+      >
         <Title
           title="Available Cars"
-          subTitle="Browse Our selection of premium vejicles availabe for your next adventure"
+          subTitle="Browse Our selection of premium vehicles available for your next adventure"
         />
 
-        <div className="flex items-center bg-white px-4 mt-6 max-w-140 w-full h-12 rounded-full shadow">
+        {/* Search Bar */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex items-center bg-white px-4 mt-6 max-w-140 w-full h-12 rounded-full shadow"
+        >
           <img
             src={assets.search_icon}
             alt="Search icon"
@@ -79,29 +92,53 @@ const Cars = () => {
             onChange={(e) => setInput(e.target.value)}
             value={input}
             type="text"
-            placeholder="Search by make,model, or features"
+            placeholder="Search by make, model, or features"
             className="w-full h-full outline-none text-gray-500"
           />
           <img
             src={assets.filter_icon}
-            alt="Search icon"
+            alt="Filter icon"
             className="w-4.5 h-4.5 ml-2"
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
+      {/* Cars Section */}
       <div className="px-6 md:px-16 lg:px-24 xl:px-32 mt-10">
-        <p className="text-gray-500 xl:px-20 max-w-7xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="text-gray-500 xl:px-20 max-w-7xl mx-auto"
+        >
           Showing {filteredCars.length} Cars
-        </p>
+        </motion.p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-4 xl:px-20 max-w-7xl mx-auto">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.15 },
+            },
+          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-4 xl:px-20 max-w-7xl mx-auto"
+        >
           {filteredCars.map((car, index) => (
-            <div key={index}>
+            <motion.div
+              key={index}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.6 }}
+            >
               <CarCard car={car} />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import Title from "./Title";
 import { assets } from "../assets/assets";
+import { motion } from "framer-motion"; // ✅ import motion
 
 const Testimonals = () => {
   const testimonials = [
@@ -9,33 +10,64 @@ const Testimonals = () => {
       location: "Barcelona, Spain",
       image: assets.testimonial_image_1,
       testimonial:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum sunt nostrum eum alias numquam ullam neque enim delectus maiores consequuntur? Possimus recusandae exercitationem quisquam natus vitae totam, placeat atque fugiat.",
+        "Renting with this platform was seamless. The booking process was simple, the car was spotless, and the support team was always available to answer my questions.",
     },
     {
-      name: "quisquam natu",
-      location: "Barcelona, Spain",
+      name: "James Carter",
+      location: "London, UK",
       image: assets.testimonial_image_2,
       testimonial:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum sunt nostrum eum alias numquam ullam neque enim delectus maiores consequuntur? Possimus recusandae exercitationem quisquam natus vitae totam, placeat atque fugiat.",
+        "I was impressed by the variety of luxury cars available. The entire experience felt premium, and I’ll definitely use this service for my next trip.",
     },
     {
-      name: "consectetur adipisicing",
-      location: "Barcelona, Spain",
+      name: "Sophia Nguyen",
+      location: "Sydney, Australia",
       image: assets.testimonial_image_1,
       testimonial:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum sunt nostrum eum alias numquam ullam neque enim delectus maiores consequuntur? Possimus recusandae exercitationem quisquam natus vitae totam, placeat atque fugiat.",
-    }
+        "Amazing service! The car exceeded my expectations, and everything from pickup to return was hassle-free. Highly recommend to anyone who values comfort and style.",
+    },
   ];
+
   return (
-    <div className="py-28 px-26 md:px-16 lg:px-24 xl:px-44">
-      <Title
-        title="What Our Customer Say"
-        subTitle="Discover why discerning travelers choose stay Venture for thier luxury accommodations aroundthe world."
-      />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-18">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="py-28 px-26 md:px-16 lg:px-24 xl:px-44"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true }}
+      >
+        <Title
+          title="What Our Customer Say"
+          subTitle="Discover why discerning travelers choose stay Venture for thier luxury accommodations around the world."
+        />
+      </motion.div>
+
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={{
+          hidden: { opacity: 0 },
+          show: {
+            opacity: 1,
+            transition: { staggerChildren: 0.2 },
+          },
+        }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-18"
+      >
         {testimonials.map((testimonial, index) => (
-          <div
+          <motion.div
             key={index}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+            viewport={{ once: true }}
             className="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-500"
           >
             <div className="flex items-center gap-3">
@@ -53,16 +85,16 @@ const Testimonals = () => {
               {Array(5)
                 .fill(0)
                 .map((_, index) => (
-                  <img key={index} src={assets.star_icon} alt="star-icon"/>
+                  <img key={index} src={assets.star_icon} alt="star-icon" />
                 ))}
             </div>
             <p className="text-gray-500 max-w-90 mt-4 font-light">
               "{testimonial.testimonial}"
             </p>
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

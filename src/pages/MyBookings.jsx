@@ -3,10 +3,10 @@ import { assets } from "../assets/assets";
 import Title from "../components/Title";
 import { useAppContext } from "../context/AppContext";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const MyBookings = () => {
   const { axios, user, currency } = useAppContext();
-
   const [bookings, setBookings] = useState([]);
 
   const fetchMyBookings = async () => {
@@ -21,11 +21,13 @@ const MyBookings = () => {
       toast.error(error.message);
     }
   };
+
   useEffect(() => {
-    user &&  fetchMyBookings();
+    user && fetchMyBookings();
   }, [user]);
+
   return (
-    <div className="px-6 md:px-16 lg:px-24 xl:px-32 xl:px-32 2xl:px-48 mt-16 text-sm max-w-7xl">
+    <div className="px-6 md:px-16 lg:px-24 xl:px-32 2xl:px-48 mt-16 text-sm max-w-7xl">
       <Title
         title="My Bookings"
         subTitle="View and manage your all car bookings"
@@ -34,17 +36,22 @@ const MyBookings = () => {
 
       <div>
         {bookings.map((booking, index) => (
-          <div
+          <motion.div
             key={booking._id}
-            className="grid grid-cols-1 md:grid-cols-4 gap-6 p-6 border border-borderColor rounded-lg mt-5 first:mt-12"
+            className="grid grid-cols-1 md:grid-cols-4 gap-6 p-6 border border-borderColor rounded-lg mt-5 first:mt-12 shadow-sm"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.6 }}
           >
             {/* Car Image + Info */}
             <div className="md:col-span-1">
-              <div className="rounded-md overflow-hidden md-3">
-                <img
+              <div className="rounded-md overflow-hidden mb-3">
+                <motion.img
                   src={booking.car.image}
                   alt=""
                   className="w-full h-auto aspect-video object-cover"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
                 />
               </div>
               <p className="text-lg font-medium mt-2">
@@ -55,6 +62,7 @@ const MyBookings = () => {
                 {booking.car.location}
               </p>
             </div>
+
             {/* Booking Info */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-2">
@@ -64,13 +72,14 @@ const MyBookings = () => {
                 <p
                   className={`px-3 py-1 text-xs rounded-full ${
                     booking.status === "confirmed"
-                      ? "bg-green400/15 text-green-600"
+                      ? "bg-green-400/15 text-green-600"
                       : "bg-red-400/15 text-red-600"
                   }`}
                 >
                   {booking.status}
                 </p>
               </div>
+
               <div className="flex items-start gap-2 mt-3">
                 <img
                   src={assets.calendar_icon_colored}
@@ -98,6 +107,7 @@ const MyBookings = () => {
                 </div>
               </div>
             </div>
+
             {/* Price */}
             <div className="md:col-span-1 flex flex-col justify-between gap-6">
               <div className="text-sm text-gray-500 text-right">
@@ -109,7 +119,7 @@ const MyBookings = () => {
                 <p>Booked on {booking.createdAt.split("T")[0]}</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
