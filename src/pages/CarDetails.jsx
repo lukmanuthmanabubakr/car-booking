@@ -3,10 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { assets, dummyCarData } from "../assets/assets";
 import Loader from "../components/Loader";
 import { useAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
 
 const CarDetails = () => {
   const { id } = useParams();
-  const {cars, axios, pickupDate, setPickupDate, returnDate, setReturnDate} = useAppContext()
+  const { cars, axios, pickupDate, setPickupDate, returnDate, setReturnDate } =
+    useAppContext();
 
   const navigate = useNavigate();
   const [car, setCar] = useState(null);
@@ -14,12 +16,27 @@ const CarDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const { data } = await axios.post("/api/bookings/create", {
+        car: id,
+        pickupDate,
+        returnDate,
+      });
+
+      if (data.success) {
+        toast.success(data.message);
+        navigate("/my-bookings");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {
     setCar(cars.find((car) => car._id === id));
   }, [cars, id]);
-
 
   return car ? (
     <div className="px-6 md:px-16 lg:px-24 xl:px-32 mt-16">
@@ -83,6 +100,8 @@ const CarDetails = () => {
                   "GPS",
                   "Heated Seats",
                   "Rear View Mirror",
+                  "Airbags (front, side, curtain)",
+                  "Keyless Entry / Push Start",
                 ].map((item) => (
                   <li key={item} className="flex items-center text-gray-500">
                     <img src={assets.check_icon} className="h-4 mr-2" alt="" />
@@ -95,7 +114,7 @@ const CarDetails = () => {
         </div>
         {/* Right: Booking Form */}
         <form
-          onSubmit={handleSubmit()}
+          onSubmit={handleSubmit}
           className="shadow-lg h-max sticky top-18 rounded-xl p-6 space-y-6 text-gray-500"
         >
           <p className="flex items-center justify-between text-2xl text-gray-800">
@@ -108,7 +127,8 @@ const CarDetails = () => {
           <div className="flex flex-col gap-2">
             <label htmlFor="pickup-date">Pickup Date</label>
             <input
-            value={pickupDate} onChange={(e) => setPickupDate}
+              value={pickupDate}
+              onChange={(e) => setPickupDate(e.target.value)}
               type="date"
               className="border border-borderColor px-3 py-2 rounded-lg"
               id="pickup-date"
@@ -119,6 +139,8 @@ const CarDetails = () => {
           <div className="flex flex-col gap-2">
             <label htmlFor="return-date">Return Date</label>
             <input
+              value={returnDate}
+              onChange={(e) => setReturnDate(e.target.value)}
               type="date"
               className="border border-borderColor px-3 py-2 rounded-lg"
               id="return-date"
