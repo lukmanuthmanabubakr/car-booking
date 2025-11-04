@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 
 const Cars = () => {
-  //Getting search params from url
+  //Getting search params from url Link
   const [searchParams] = useSearchParams();
   const pickupLocation = searchParams.get("pickupLocation");
   const pickupDate = searchParams.get("pickupDate");
