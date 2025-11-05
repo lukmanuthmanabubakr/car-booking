@@ -1,6 +1,6 @@
 import React from "react";
 import { assets } from "../assets/assets";
-import { motion } from "framer-motion"; // ✅ import motion
+import { motion } from "framer-motion"; //import motion
 
 const Banner = () => {
   return (
