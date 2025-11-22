@@ -22,7 +22,7 @@ const Banner = () => {
       >
         <h2 className="text-3xl font-medium">Do you Own a Luxury Car?</h2>
 
-        <p>Monetize your vehicle effortlessly by listing it on Car Rental.</p>
+        <p>Monetize your vehicle effortlessly by listing it on Book Now.</p>
 
         <p className="max-w-130">
           We take care of insurance, driver verification and secure payments —

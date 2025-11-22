@@ -57,7 +57,7 @@ const Hero = () => {
           >
             <Sparkles className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-gray-600">
-              Premium Car Rental Service
+              Premium Book Now Service
             </span>
           </motion.div>
 

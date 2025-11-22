@@ -25,7 +25,7 @@ const Footer = () => {
               <span className="text-2xl font-bold text-white">bookNow</span>
             </div>
             <p className="text-gray-400 mb-6">
-              Your trusted partner for premium car rentals. Experience luxury and comfort with our extensive fleet.
+              Your trusted partner for premium Book Nows. Experience luxury and comfort with our extensive fleet.
             </p>
 
             {/* Social Links */}

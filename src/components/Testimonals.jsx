@@ -62,7 +62,7 @@ const Testimonials = () => {
         >
           <Title
             title="What Our Customers Say"
-            subTitle="Discover why discerning travelers choose bookNow for their luxury car rentals around the world."
+            subTitle="Discover why discerning travelers choose bookNow for their luxury Book Nows around the world."
           />
         </motion.div>
 
