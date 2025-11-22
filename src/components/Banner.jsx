@@ -1,52 +1,64 @@
 import React from "react";
 import { assets } from "../assets/assets";
-import { motion } from "framer-motion"; // ✅ import motion
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 const Banner = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-      className="flex flex-col md:flex-row md:items-start items-center justify-between px-8 min-md:pl-14 pt-10 bg-gradient-to-r from-[#0558FE] to-[#A9CFFF] max-w-6xl mx-3 md:mx-auto rounded-2xl overflow-hidden"
-    >
-      {/* Left Text Section */}
+    <div className="px-6 md:px-16 lg:px-24 xl:px-32 my-24">
       <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="text-white"
+        className="bg-gradient-to-r from-primary to-primary-dull rounded-2xl overflow-hidden shadow-xl"
       >
-        <h2 className="text-3xl font-medium">Do you Own a Luxury Car?</h2>
-        <p className="mt-2">
-          Monetize your vehicle effortlessly by listing in on Car Rental.
-        </p>
-        <p className="max-w-130">
-          We take care of insurance, driver verification and secure payments - so you can earn passive income, stress-free.
-        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-12 items-center">
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-white"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Do You Own a Luxury Car?
+            </h2>
+            <p className="text-lg mb-3 text-white/90">
+              Monetize your vehicle effortlessly by listing it on bookNow.
+            </p>
+            <p className="text-white/80 mb-6">
+              We take care of insurance, driver verification and secure payments - so you can earn passive income, stress-free.
+            </p>
 
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-6 py-2 bg-white hover:bg-slate-100 transition-all text-primary rounded-lg text-sm mt-4 cursor-pointer"
-        >
-          List your car
-        </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-100 text-primary rounded-lg font-semibold transition-all"
+            >
+              List Your Car
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
+          </motion.div>
+
+          {/* Right Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center"
+          >
+            <img
+              src={assets.banner_car_image}
+              alt="Luxury car"
+              className="w-full max-w-md"
+            />
+          </motion.div>
+        </div>
       </motion.div>
-
-      {/* Right Image Section */}
-      <motion.img
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7, delay: 0.4 }}
-        viewport={{ once: true }}
-        src={assets.banner_car_image}
-        alt="car"
-        className="max-h-45 mt-10"
-      />
-    </motion.div>
+    </div>
   );
 };
 

@@ -5,7 +5,8 @@ import CarCard from "../components/CarCard";
 import { useSearchParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import toast from "react-hot-toast";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, SlidersHorizontal, Car, Sparkles } from "lucide-react";
 
 const Cars = () => {
   //Getting search params from url
@@ -17,6 +18,7 @@ const Cars = () => {
   const { cars, axios } = useAppContext();
 
   const [input, setInput] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
 
   const isSearchData = pickupLocation && pickupDate && returnDate;
   const [filteredCars, setFilteredCars] = useState([]);
@@ -62,83 +64,187 @@ const Cars = () => {
     cars.length > 0 && !isSearchData && applyFilter();
   }, [input, cars]);
 
-  return (
-    <div>
-      {/* Header Section */}
-      <motion.div
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        className="flex flex-col items-center py-20 bg-light max-md:px-4"
-      >
-        <Title
-          title="Available Cars"
-          subTitle="Browse Our selection of premium vehicles available for your next adventure"
-        />
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
 
-        {/* Search Bar */}
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        damping: 20,
+        stiffness: 100,
+      },
+    },
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white via-light/20 to-white">
+      {/* Header Section */}
+      <div className="relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 bg-light">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        </div>
+
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex items-center bg-white px-4 mt-6 max-w-140 w-full h-12 rounded-full shadow"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="relative flex flex-col items-center py-16 px-4"
         >
-          <img
-            src={assets.search_icon}
-            alt="Search icon"
-            className="w-4.5 h-4.5 mr-2"
+          {/* Badge */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5, type: "spring", delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-md mb-4"
+          >
+            <Car className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-gray-700">
+              {filteredCars.length} Premium Vehicles Available
+            </span>
+          </motion.div>
+
+          <Title
+            title="Available Cars"
+            subTitle="Browse our selection of premium vehicles available for your next adventure"
           />
-          <input
-            onChange={(e) => setInput(e.target.value)}
-            value={input}
-            type="text"
-            placeholder="Search by make, model, or features"
-            className="w-full h-full outline-none text-gray-500"
-          />
-          <img
-            src={assets.filter_icon}
-            alt="Filter icon"
-            className="w-4.5 h-4.5 ml-2"
-          />
+
+          {/* Search Bar */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="relative w-full max-w-2xl mt-8"
+          >
+            <div className="flex items-center bg-white px-6 py-4 rounded-2xl shadow-lg border-2 border-transparent focus-within:border-primary transition-all">
+              <Search className="w-5 h-5 text-gray-400 mr-3" />
+              <input
+                onChange={(e) => setInput(e.target.value)}
+                value={input}
+                type="text"
+                placeholder="Search by make, model, category, or features..."
+                className="flex-1 outline-none text-gray-700 placeholder-gray-400 font-medium"
+              />
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setShowFilters(!showFilters)}
+                className={`p-2 rounded-lg transition-all ${
+                  showFilters
+                    ? "bg-primary text-white"
+                    : "bg-light text-gray-600 hover:bg-primary/10"
+                }`}
+              >
+                <SlidersHorizontal className="w-5 h-5" />
+              </motion.button>
+            </div>
+
+            {/* Filter hint */}
+            {input && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="absolute left-6 -bottom-6 text-xs text-primary font-medium"
+              >
+                Searching for "{input}"...
+              </motion.p>
+            )}
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Cars Section */}
-      <div className="px-6 md:px-16 lg:px-24 xl:px-32 mt-10">
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-gray-500 xl:px-20 max-w-7xl mx-auto"
-        >
-          Showing {filteredCars.length} Cars
-        </motion.p>
+      <div className="px-6 md:px-16 lg:px-24 xl:px-32 py-12">
+        <div className="max-w-7xl mx-auto">
+          {/* Results Header */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-between mb-8 pb-4 border-b border-borderColor"
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-1 h-8 bg-primary rounded-full" />
+              <div>
+                <p className="text-2xl font-bold text-gray-800">
+                  {filteredCars.length} {filteredCars.length === 1 ? "Car" : "Cars"} Found
+                </p>
+                <p className="text-sm text-gray-500">
+                  {isSearchData
+                    ? `Available in ${pickupLocation}`
+                    : "Ready for your next adventure"}
+                </p>
+              </div>
+            </div>
 
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { staggerChildren: 0.15 },
-            },
-          }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-4 xl:px-20 max-w-7xl mx-auto"
-        >
-          {filteredCars.map((car, index) => (
-            <motion.div
-              key={index}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.6 }}
-            >
-              <CarCard car={car} />
-            </motion.div>
-          ))}
-        </motion.div>
+            {/* Sort/View options could go here */}
+          </motion.div>
+
+          {/* Cars Grid */}
+          <AnimatePresence mode="wait">
+            {filteredCars.length > 0 ? (
+              <motion.div
+                key="cars-grid"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
+                {filteredCars.map((car) => (
+                  <motion.div
+                    key={car._id}
+                    variants={itemVariants}
+                    whileHover={{ y: -8 }}
+                    layout
+                  >
+                    <CarCard car={car} />
+                  </motion.div>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="no-results"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="flex flex-col items-center justify-center py-20"
+              >
+                <div className="w-24 h-24 bg-light rounded-full flex items-center justify-center mb-6">
+                  <Car className="w-12 h-12 text-gray-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                  No Cars Found
+                </h3>
+                <p className="text-gray-500 text-center max-w-md">
+                  {input
+                    ? `No results for "${input}". Try adjusting your search.`
+                    : "No vehicles available at the moment. Please check back later."}
+                </p>
+                {input && (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setInput("")}
+                    className="mt-6 px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary-dull transition-all"
+                  >
+                    Clear Search
+                  </motion.button>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </div>
   );
