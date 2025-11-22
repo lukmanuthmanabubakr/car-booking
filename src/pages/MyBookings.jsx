@@ -233,7 +233,7 @@ const MyBookings = () => {
                       </div>
 
                       {/* Actions */}
-                      <div className="space-y-2 mt-4">
+                      {/* <div className="space-y-2 mt-4">
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
@@ -250,7 +250,7 @@ const MyBookings = () => {
                             Cancel Booking
                           </motion.button>
                         )}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </motion.div>

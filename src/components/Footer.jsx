@@ -58,7 +58,7 @@ const Footer = () => {
               <li><a href="/" className="text-gray-400 hover:text-primary transition-colors">Home</a></li>
               <li><a href="/cars" className="text-gray-400 hover:text-primary transition-colors">Browse Cars</a></li>
               <li><a href="/list" className="text-gray-400 hover:text-primary transition-colors">List Your Car</a></li>
-              <li><a href="/about" className="text-gray-400 hover:text-primary transition-colors">About Us</a></li>
+              <li><a href="/my-bookings" className="text-gray-400 hover:text-primary transition-colors">My Bookings</a></li>
             </ul>
           </motion.div>
 
@@ -71,10 +71,10 @@ const Footer = () => {
           >
             <h3 className="text-lg font-bold text-white mb-4">Resources</h3>
             <ul className="space-y-2">
-              <li><a href="/help" className="text-gray-400 hover:text-primary transition-colors">Help Center</a></li>
-              <li><a href="/terms" className="text-gray-400 hover:text-primary transition-colors">Terms of Service</a></li>
-              <li><a href="/privacy" className="text-gray-400 hover:text-primary transition-colors">Privacy Policy</a></li>
-              <li><a href="/insurance" className="text-gray-400 hover:text-primary transition-colors">Insurance</a></li>
+              <li><a href="/" className="text-gray-400 hover:text-primary transition-colors">Help Center</a></li>
+              <li><a href="/" className="text-gray-400 hover:text-primary transition-colors">Terms of Service</a></li>
+              <li><a href="/" className="text-gray-400 hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li><a href="/" className="text-gray-400 hover:text-primary transition-colors">Insurance</a></li>
             </ul>
           </motion.div>
 
@@ -95,14 +95,14 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                <a href="tel:+12345685343" className="text-gray-400 hover:text-primary transition-colors text-sm">
-                  +1 234 5685 343
+                <a href="tel:+2349032024600" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                  +234 903 202 4600
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                <a href="mailto:info@booknow.com" className="text-gray-400 hover:text-primary transition-colors text-sm">
-                  info@booknow.com
+                <a href="mailto:lukmanuthman135@gmail.com" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                  lukmanuthman135@gmail.com
                 </a>
               </li>
             </ul>
@@ -121,11 +121,11 @@ const Footer = () => {
             © {currentYear} <span className="text-white font-semibold">bookNow</span>. All rights reserved.
           </p>
           <ul className="flex items-center gap-6 text-sm">
-            <li><a href="/privacy" className="text-gray-400 hover:text-primary transition-colors">Privacy</a></li>
+            <li><a href="/" className="text-gray-400 hover:text-primary transition-colors">Privacy</a></li>
             <li className="text-gray-600">|</li>
-            <li><a href="/terms" className="text-gray-400 hover:text-primary transition-colors">Terms</a></li>
+            <li><a href="/" className="text-gray-400 hover:text-primary transition-colors">Terms</a></li>
             <li className="text-gray-600">|</li>
-            <li><a href="/sitemap" className="text-gray-400 hover:text-primary transition-colors">Sitemap</a></li>
+            <li><a href="/" className="text-gray-400 hover:text-primary transition-colors">Sitemap</a></li>
           </ul>
         </motion.div>
       </div>
