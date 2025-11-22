@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, SlidersHorizontal, Car, Sparkles } from "lucide-react";
 
 const Cars = () => {
-  //Getting search params from url
+  //Getting search params from url Link
   const [searchParams] = useSearchParams();
   const pickupLocation = searchParams.get("pickupLocation");
   const pickupDate = searchParams.get("pickupDate");

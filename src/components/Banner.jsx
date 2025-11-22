@@ -1,36 +1,31 @@
 import React from "react";
 import { assets } from "../assets/assets";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion"; // ✅ import motion
 
 const Banner = () => {
   return (
-    <div className="px-6 md:px-16 lg:px-24 xl:px-32 my-24">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="flex flex-col md:flex-row md:items-start items-center justify-between px-8 min-md:pl-14 pt-10 bg-gradient-to-r from-[#0558FE] to-[#A9CFFF] max-w-6xl mx-3 md:mx-auto rounded-2xl overflow-hidden"
+    >
+      {/* Left Text Section */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, delay: 0.2 }}
         viewport={{ once: true }}
-        className="bg-gradient-to-r from-primary to-primary-dull rounded-2xl overflow-hidden shadow-xl"
+        className="text-white"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-12 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-white"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Do You Own a Luxury Car?
-            </h2>
-            <p className="text-lg mb-3 text-white/90">
-              Monetize your vehicle effortlessly by listing it on bookNow.
-            </p>
-            <p className="text-white/80 mb-6">
-              We take care of insurance, driver verification and secure payments - so you can earn passive income, stress-free.
-            </p>
+        <h2 className="text-3xl font-medium">Do you Own a Luxury Car?</h2>
+        <p className="mt-2">
+          Monetize your vehicle effortlessly by listing in on Car Rental.
+        </p>
+        <p className="max-w-130">
+          We take care of insurance, driver verification and secure payments - so you can earn passive income, stress-free.
+        </p>
 
             <motion.button
               whileHover={{ scale: 1.05 }}
