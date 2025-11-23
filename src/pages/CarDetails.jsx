@@ -24,11 +24,6 @@ const CarDetails = () => {
   //       returnDate,
   //     });
 
-  //     if (data.success) {
-  //       toast.success(data.message);
-  //       navigate("/my-bookings");
-  //     } else {
-  //       toast.error(data.message);
 
 
   const handleSubmit = async (e) => {
