@@ -19,8 +19,6 @@ const CarDetails = () => {
   //   e.preventDefault();
   //   try {
   //     const { data } = await axios.post("/api/bookings/create", {
-  //       car: id,
-  //     
 
 
 
