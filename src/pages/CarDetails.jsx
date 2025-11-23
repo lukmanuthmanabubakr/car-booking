@@ -33,7 +33,6 @@ const CarDetails = () => {
   //   } catch (error) {
   //     toast.error(error.message);
   //   }
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
