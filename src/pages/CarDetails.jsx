@@ -18,8 +18,6 @@ const CarDetails = () => {
   // const handleSubmit = async (e) => {
   //   e.preventDefault();
   //   try {
-  //     const { data } = await axios.post("/api/bookings/create", {
-
 
 
   const handleSubmit = async (e) => {
