@@ -29,10 +29,7 @@ const CarDetails = () => {
   //       navigate("/my-bookings");
   //     } else {
   //       toast.error(data.message);
-  //     }
-  //   } catch (error) {
-  //     toast.error(error.message);
-  //   }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
