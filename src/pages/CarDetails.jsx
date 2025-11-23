@@ -15,10 +15,6 @@ const CarDetails = () => {
   const [car, setCar] = useState(null);
   const currency = import.meta.env.VITE_CURRENCY;
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
