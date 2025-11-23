@@ -22,7 +22,6 @@ const CarDetails = () => {
   //       car: id,
   //       pickupDate,
   //       returnDate,
-  //     });
 
 
 
