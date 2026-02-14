@@ -20,7 +20,6 @@ export const AppProvider = ({ children }) => {
 
   const [cars, setCars] = useState([]);
 
-  // Fuction to check
   const fetchUser = async () => {
     try {
       const { data } = await axios.get("/api/user/data");
